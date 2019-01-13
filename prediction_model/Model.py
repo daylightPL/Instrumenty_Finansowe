@@ -5,10 +5,10 @@ import pandas
 import datetime
 import dateutil.relativedelta
 
-def Prediction (date_list_x, value_list_y, date_for_prediction):
+def Prediction (data_xy, date_for_prediction):
     #Obrobka dat (Lista X)
-    train_list_x = date_list_x
-    train_list_y = value_list_y
+    train_list_x = data_xy[0]
+    train_list_y = data_xy[1]
     for i in range(0, len(train_list_x)):
         train_list_x[i] = int(time.mktime(time.strptime(train_list_x[i], '%Y-%m-%d')))
 
@@ -41,8 +41,8 @@ def Select_Data(duration, date_today):
         df = pandas.read_csv(csv_file)
         #Wykorzystuje wszystko wczytane - nie ma potrzeby filtracji
         #Utworz listy i je zwroc
-        x = df.effectiveDate.tolist()
-        y = df.mid.tolist()
+        x = df.data.tolist()
+        y = df.cena.tolist()
         return x, y
     elif duration == 'month':
         #Wczytaj dane z pliku
@@ -54,11 +54,11 @@ def Select_Data(duration, date_today):
         targettime = str(targettime)
         #print(date_today)
         #print(targettime)
-        df = df[(df.effectiveDate > targettime)]
+        df = df[(df.data > targettime)]
         #print(df)
         #Utworz listy i je zwroc
-        x = df.effectiveDate.tolist()
-        y = df.mid.tolist()
+        x = df.data.tolist()
+        y = df.cena.tolist()
         return x, y
     elif duration == 'week':
         #Wczytaj dane z pliku
@@ -70,25 +70,31 @@ def Select_Data(duration, date_today):
         targettime = str(targettime)
         #print(date_today)
         #print(targettime)
-        df = df[(df.effectiveDate > targettime)]
+        df = df[(df.data > targettime)]
         #print(df)
         #Utworz listy i je zwroc
-        x = df.effectiveDate.tolist()
-        y = df.mid.tolist()
+        x = df.data.tolist()
+        y = df.cena.tolist()
         return x, y
 
 #Ponizej przykład zastosowania obu funkcji
-#Funkcja zwraca dwuwymiarową listę - trzeba rozbić na x i y
-#data = Select_Data('year', '2018-01-13')
-#data = Select_Data('month', '2019-01-13')
-data = Select_Data('week', '2019-01-13')
-x = data[0]
-y = data[1]
 predict_for = ['2019-01-13']
-prediction = Prediction(x, y, predict_for)
-print(predict_for)
-print(prediction)
+today = '2019-01-13'
+prediction = [0, 0, 0]
 
+data = Select_Data('year', today)
+prediction[0] = Prediction(data, predict_for)
+
+data = Select_Data('month', today)
+prediction[1] = Prediction(data, predict_for)
+
+data = Select_Data('week', today)
+prediction[2] = Prediction(data, predict_for)
+
+print('Prognoza na: ' + str(predict_for[0]))
+print('Rok: '+ str(prediction[0]))
+print('Miesiac: '+ str(prediction[1]))
+print('Tydzien: '+ str(prediction[2]))
 
 #Ponizej przykład zastosowania samej funkcji predict
 #Inicjalizacja danych
