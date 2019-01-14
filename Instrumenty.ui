@@ -184,17 +184,17 @@
     </property>
     <item>
      <property name="text">
-      <string>tygodnia</string>
+      <string>week</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>miesiąca</string>
+      <string>month</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>roku</string>
+      <string>year</string>
      </property>
     </item>
    </widget>

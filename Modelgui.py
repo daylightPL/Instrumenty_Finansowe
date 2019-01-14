@@ -37,7 +37,7 @@ def Select_Data(duration, date_today):
     #Switch zaleznie od zakresu danych
     if duration == 'year':
         #Wczytaj dane z pliku
-        csv_file = '../data/data_store/selected_data.csv'
+        csv_file = './data/data_store/selected_data.csv'
         df = pandas.read_csv(csv_file)
         #Wykorzystuje wszystko wczytane - nie ma potrzeby filtracji
         #Utworz listy i je zwroc
@@ -46,7 +46,7 @@ def Select_Data(duration, date_today):
         return x, y
     elif duration == 'month':
         #Wczytaj dane z pliku
-        csv_file = '../data/data_store/selected_data.csv'
+        csv_file = './data/data_store/selected_data.csv'
         df = pandas.read_csv(csv_file)
         #Filtracja
         targettime = datetime.datetime.strptime(date_today, '%Y-%m-%d')
@@ -62,7 +62,7 @@ def Select_Data(duration, date_today):
         return x, y
     elif duration == 'week':
         #Wczytaj dane z pliku
-        csv_file = '../data/data_store/selected_data.csv'
+        csv_file = './data/data_store/selected_data.csv'
         df = pandas.read_csv(csv_file)
         #Filtracja
         targettime = datetime.datetime.strptime(date_today, '%Y-%m-%d')
@@ -84,16 +84,16 @@ def model_licz(period, predict_for ):
     today = '2019-01-13'
     data = Select_Data(period, today)
 
-    prediction = int(Prediction(data, predict_for))
+    prediction = str(Prediction(data, predict_for))
     return prediction
 
 
-period = 'month'
-predict_for = ['2019-01-15']
+#period = 'month'
+#predict_for = ['2019-01-15']
 
-wyliczone = model_licz(period, predict_for)
+#wyliczone = model_licz(period, predict_for)
 
-print(wyliczone)
+#print(wyliczone)
 
 
 
