@@ -18,7 +18,7 @@ def get_actual_value(valuable):
         return val
     except:
         print('Nie można uzyskać informacji o aktualnym kursie!')
-        return None
+        return 'Brak danych'
 
 
 # return actual date
@@ -35,7 +35,7 @@ def get_actual_date(valuable):
         return date_act
     except:
         print('Nie można uzyskać informacji o dniu aktualizacji kursu!')
-        return None
+        return 'Brak danych'
 
 
 # read data from json files for actual data
