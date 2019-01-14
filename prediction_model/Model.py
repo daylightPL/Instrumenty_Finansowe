@@ -77,24 +77,44 @@ def Select_Data(duration, date_today):
         y = df.cena.tolist()
         return x, y
 
+
+def model_licz(period, predict_for ):
+    #today = '2019-01-13'
+    #period = 'month' or 'week' or 'year'
+    today = '2019-01-13'
+    data = Select_Data(period, today)
+
+    prediction = int(Prediction(data, predict_for))
+    return prediction
+
+
+period = 'month'
+predict_for = ['2019-01-15']
+
+wyliczone = model_licz(period, predict_for)
+
+print(wyliczone)
+
+
+
 #Ponizej przykład zastosowania obu funkcji
-predict_for = ['2019-01-13']
-today = '2019-01-13'
-prediction = [0, 0, 0]
+#predict_for = ['2019-01-13']
+#today = '2019-01-13'
+#prediction = [0, 0, 0]
 
-data = Select_Data('year', today)
-prediction[0] = Prediction(data, predict_for)
+#data = Select_Data('year', today)
+#prediction[0] = Prediction(data, predict_for)
 
-data = Select_Data('month', today)
-prediction[1] = Prediction(data, predict_for)
+#data = Select_Data('month', today)
+#prediction[1] = Prediction(data, predict_for)
 
-data = Select_Data('week', today)
-prediction[2] = Prediction(data, predict_for)
+#data = Select_Data('week', today)
+#prediction[2] = Prediction(data, predict_for)
 
-print('Prognoza na: ' + str(predict_for[0]))
-print('Rok: '+ str(prediction[0]))
-print('Miesiac: '+ str(prediction[1]))
-print('Tydzien: '+ str(prediction[2]))
+#print('Prognoza na: ' + str(predict_for[0]))
+#print('Rok: '+ str(prediction[0]))
+#print('Miesiac: '+ str(prediction[1]))
+#print('Tydzien: '+ str(prediction[2]))
 
 #Ponizej przykład zastosowania samej funkcji predict
 #Inicjalizacja danych
