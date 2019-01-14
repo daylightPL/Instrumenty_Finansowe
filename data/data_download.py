@@ -18,7 +18,7 @@ def download(valuable, start_date, end_date, filename = 'data'):
     except Exception as err:
         with open("error.log", 'a') as fh:
             fh.write("{0}: {1}\n".format(datetime.datetime.now(), str(err)))
-    filename = './data_store/{0}.json'.format(filename)
+    filename = './data/data_store/{0}.json'.format(filename)
     with open(filename, 'w+') as file:
         file.write(str(data))
     return data
@@ -49,7 +49,7 @@ def download_actual_gold():
     with urllib.request.urlopen(url) as response:
         data = response.read()
     data = data.decode("utf-8")
-    filename = './data_store/act_data_gold.json'
+    filename = './data/data_store/act_data_gold.json'
     with open(filename, 'w+') as file:
         file.write(str(data))
 
@@ -61,7 +61,7 @@ def download_actual_currency():
     with urllib.request.urlopen(url) as response:
         data = response.read()
     data = data.decode("utf-8")
-    filename = './data_store/act_data_curr.json'
+    filename = './data/data_store/act_data_curr.json'
     with open(filename, 'w+') as file:
         file.write(str(data))
 
