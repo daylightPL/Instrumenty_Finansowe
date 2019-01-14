@@ -2,33 +2,71 @@ import json
 import pandas as pd
 
 
-#read data from json files and return values
+# return actual values
 def get_actual_value(valuable):
+    # get data from file
+    df = read_act_file(valuable)
+    try:
+        # check value for gold
+        if valuable == 'gold':
+            val = df.iloc[0]['cena']
+        # check value for selected currency
+        else:
+            df = df.iloc[0]['rates']
+            df = pd.DataFrame(df)
+            val = df.loc[df.code == valuable, 'mid'].values[0]
+        return val
+    except:
+        print('Nie można uzyskać informacji o aktualnym kursie!')
+        return None
 
-    #retunt actual gold value
+
+# return actual date
+def get_actual_date(valuable):
+    # get data from file
+    df = read_act_file(valuable)
+    try:
+        # check date in file for gold
+        if valuable == 'gold':
+            date_act = df.iloc[0]['data']
+        # check date in file for selected currency
+        else:
+            date_act = df.loc[0]['effectiveDate']
+        return date_act
+    except:
+        print('Nie można uzyskać informacji o dniu aktualizacji kursu!')
+        return None
+
+
+# read data from json files for actual data
+def read_act_file(valuable):
+    # read gold file
     if valuable == 'gold':
         try:
             with open('./data_store/act_data_gold.json') as data_file:
                 data = json.load(data_file)
-            df = pd.DataFrame(data)
-            val = df.iloc[0]['cena']
-            return val
         except:
             print('Nie można pobrać danych o kursie złota!')
             return None
-
-    #return value for selected currency
     else:
+        # read currency file
         try:
             with open('./data_store/act_data_curr.json') as data_file:
                 data = json.load(data_file)
-            df = pd.DataFrame(data)
-            df = df.iloc[0]['rates']
-            df = pd.DataFrame(df)
-            val = df.loc[df.code == valuable, 'mid'].values[0]
-            return val
         except:
             print('Nie można pobrać danych o kursie wybranej waluty!')
             return None
+    # returns data from json file
+    df = pd.DataFrame(data)
+    return df
 
+"""
+Test outputs
+print(read_act_file('EUR'))
 print(get_actual_value('EUR'))
+print(get_actual_date('EUR'))
+
+#print(read_act_file('gold'))
+#print(get_actual_value('gold'))
+#print(get_actual_date('gold'))
+"""
