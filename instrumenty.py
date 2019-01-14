@@ -1,6 +1,9 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QMessageBox
 
+from Modelgui import model_licz
+
+
 app = QtWidgets.QApplication([])
 dlg = uic.loadUi("instrumenty.ui")
 
@@ -18,14 +21,13 @@ def aktualny():
 waluty = {'złoto': 'gold', 'euro': 'EUR', 'funt szterling': 'GBP', 'dolar amerykański': 'USD', 'korona czeska': 'CZK', 'peso meksykańskie': 'MXN', 'rubel rosyjski': 'RUB'}
 
 
-def forecast(currency, period, date):
-    wynik = str(currency) + str(period) + str(date)
+def forecast():
+    wynik = model_licz('week', ['2019-01-15'])
     return wynik
 
 
 def display_forecast():
-
-    dlg.lineEdit_2.setText(forecast(dlg.comboBox.currentText(), dlg.comboBox_2.currentText(), dlg.lineEdit_4.text()))
+    dlg.lineEdit_2.setText(model_licz(str(dlg.comboBox_2.currentText()), [str(dlg.lineEdit_4.text())]))
 
 dlg.comboBox.currentIndexChanged.connect(aktualny)
 dlg.pushButton.clicked.connect(display_forecast)
