@@ -25,37 +25,22 @@
     </property>
     <item>
      <property name="text">
-      <string>złoto</string>
+      <string>gold</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>funt szterling</string>
+      <string>EUR</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>dolar amerykański</string>
+      <string>USD</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>euro</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>korona czeska</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>peso meksykańskie</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>rubel rosyjski</string>
+      <string>GBP</string>
      </property>
     </item>
    </widget>
