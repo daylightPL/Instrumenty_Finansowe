@@ -51,7 +51,7 @@ def read_act_file(valuable):
     else:
         # read currency file
         try:
-            with open('.data/data_store/act_data_curr.json') as data_file:
+            with open('./data/data_store/act_data_curr.json') as data_file:
                 data = json.load(data_file)
         except:
             print('Nie można pobrać danych o kursie wybranej waluty!')
@@ -65,6 +65,6 @@ Test outputs
 print(read_act_file('EUR'))
 print(get_actual_value('EUR', read_act_file('EUR')))
 print(get_actual_date('EUR', read_act_file('EUR')))
-#print(get_actual_value('gold', read_act_file('gold')))
-#print(get_actual_date('gold', read_act_file('gold')))
+print(get_actual_value('gold', read_act_file('gold')))
+print(get_actual_date('gold', read_act_file('gold')))
 """
