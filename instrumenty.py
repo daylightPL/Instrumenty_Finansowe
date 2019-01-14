@@ -21,10 +21,6 @@ def aktualny():
 waluty = {'złoto': 'gold', 'euro': 'EUR', 'funt szterling': 'GBP', 'dolar amerykański': 'USD', 'korona czeska': 'CZK', 'peso meksykańskie': 'MXN', 'rubel rosyjski': 'RUB'}
 
 
-def forecast():
-    wynik = model_licz('week', ['2019-01-15'])
-    return wynik
-
 
 def display_forecast():
     dlg.lineEdit_2.setText(model_licz(str(dlg.comboBox_2.currentText()), [str(dlg.lineEdit_4.text())]))
