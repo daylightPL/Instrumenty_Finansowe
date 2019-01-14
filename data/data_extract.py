@@ -35,6 +35,3 @@ def to_csv(valuable):
             df.to_csv(csv)
     except:
         print('Błąd przy zapisie pliku')
-
-
-to_csv('gold')

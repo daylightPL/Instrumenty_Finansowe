@@ -5,7 +5,6 @@ import pandas as pd
 # return actual values
 def get_actual_value(valuable, df):
     # get data from file
-    #df = read_act_file(valuable)
     try:
         # check value for gold
         if valuable == 'gold':
@@ -24,7 +23,6 @@ def get_actual_value(valuable, df):
 # return actual date
 def get_actual_date(valuable, df):
     # get data from file
-    #df = read_act_file(valuable)
     try:
         # check date in file for gold
         if valuable == 'gold':
