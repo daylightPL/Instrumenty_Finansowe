@@ -9,7 +9,7 @@ def to_csv(valuable):
     #year data for gold
     if valuable == 'gold':
         try:
-            with open('./data_store/year_data_gold.json') as data_file:
+            with open('.data/data_store/year_data_gold.json') as data_file:
                 data = json.load(data_file)
             df = pd.DataFrame(data)
             df = df[['data', 'cena']]
@@ -20,7 +20,7 @@ def to_csv(valuable):
     #year data for selected currency
     else:
         try:
-            with open('./data_store/year_data_curr.json') as data_file:
+            with open('.data/data_store/year_data_curr.json') as data_file:
                 data = json.load(data_file)
             df = json_normalize(data, 'rates', ['code'])
             df = df.drop(['no', 'code'], axis=1)
@@ -31,7 +31,7 @@ def to_csv(valuable):
 
     #save in csv file
     try:
-        with open('./data_store/selected_data.csv', 'w') as csv:
+        with open('.data/data_store/selected_data.csv', 'w') as csv:
             df.to_csv(csv)
     except:
         print('Błąd przy zapisie pliku')

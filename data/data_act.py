@@ -3,9 +3,9 @@ import pandas as pd
 
 
 # return actual values
-def get_actual_value(valuable):
+def get_actual_value(valuable, df):
     # get data from file
-    df = read_act_file(valuable)
+    #df = read_act_file(valuable)
     try:
         # check value for gold
         if valuable == 'gold':
@@ -22,9 +22,9 @@ def get_actual_value(valuable):
 
 
 # return actual date
-def get_actual_date(valuable):
+def get_actual_date(valuable, df):
     # get data from file
-    df = read_act_file(valuable)
+    #df = read_act_file(valuable)
     try:
         # check date in file for gold
         if valuable == 'gold':
@@ -43,7 +43,7 @@ def read_act_file(valuable):
     # read gold file
     if valuable == 'gold':
         try:
-            with open('./data_store/act_data_gold.json') as data_file:
+            with open('./data/data_store/act_data_gold.json') as data_file:
                 data = json.load(data_file)
         except:
             print('Nie można pobrać danych o kursie złota!')
@@ -51,7 +51,7 @@ def read_act_file(valuable):
     else:
         # read currency file
         try:
-            with open('./data_store/act_data_curr.json') as data_file:
+            with open('.data/data_store/act_data_curr.json') as data_file:
                 data = json.load(data_file)
         except:
             print('Nie można pobrać danych o kursie wybranej waluty!')
@@ -63,10 +63,8 @@ def read_act_file(valuable):
 """
 Test outputs
 print(read_act_file('EUR'))
-print(get_actual_value('EUR'))
-print(get_actual_date('EUR'))
-
-#print(read_act_file('gold'))
-#print(get_actual_value('gold'))
-#print(get_actual_date('gold'))
+print(get_actual_value('EUR', read_act_file('EUR')))
+print(get_actual_date('EUR', read_act_file('EUR')))
+#print(get_actual_value('gold', read_act_file('gold')))
+#print(get_actual_date('gold', read_act_file('gold')))
 """
