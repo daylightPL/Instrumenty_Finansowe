@@ -2,19 +2,26 @@ from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QMessageBox
 
 from Modelgui import model_licz
-#from data.data_act import get_actual_value, get_actual_date
 from data.data_act import *
-from data.data_download import download_actual_gold, download_actual_currency
+from data.data_download import *
+from data.data_extract import *
 
 app = QtWidgets.QApplication([])
-dlg = uic.loadUi("instrumenty.ui")
+dlg = uic.loadUi("Instrumenty.ui")
+
+download_actual_gold()
+download_actual_currency()
 
 def show_message(title='Test', message='Test'):
     QMessageBox.information(None, title, message)
 
 def pobierz_dane():
-    download_actual_gold()
-    download_actual_currency()
+    show_message('Info', dlg.comboBox.currentText())
+    if dlg.comboBox.currentText() == 'gold':
+        download_last_year_gold()
+    else:
+        download_last_year_curr(dlg.comboBox.currentText())
+    to_csv(dlg.comboBox.currentText())
     show_message('Info', "Dane zostały pobrane")
 
 def aktualny():
