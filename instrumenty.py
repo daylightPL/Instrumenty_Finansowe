@@ -10,7 +10,9 @@ app = QtWidgets.QApplication([])
 dlg = uic.loadUi("Instrumenty.ui")
 
 download_actual_gold()
+print('Gold data donloaded')
 download_actual_currency()
+print('Currency data donloaded')
 
 def show_message(title='Test', message='Test'):
     QMessageBox.information(None, title, message)
