@@ -81,7 +81,7 @@ def Select_Data(duration, date_today):
 def model_licz(period, predict_for ):
     #today = '2019-01-13'
     #period = 'month' or 'week' or 'year'
-    today = '2019-01-13'
+    today = '2019-01-15' #TODO: str(datetime.datetime.today())
     data = Select_Data(period, today)
 
     prediction = str(Prediction(data, predict_for))
