@@ -68,8 +68,4 @@ def download_actual_currency():
 
 
 
-print(download('USD','2018-01-07','2019-01-07'))
-#print(download_actual_gold())
-#print(download_actual_currency())
-download_last_year_gold()
-download_last_year_curr('GBP')
+
