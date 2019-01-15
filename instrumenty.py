@@ -2,7 +2,8 @@ from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QMessageBox
 
 from Modelgui import model_licz
-from data.data_act import get_actual_value, get_actual_date
+#from data.data_act import get_actual_value, get_actual_date
+from data.data_act import *
 from data.data_download import download_actual_gold, download_actual_currency
 
 app = QtWidgets.QApplication([])
@@ -18,9 +19,8 @@ def pobierz_dane():
 
 def aktualny():
     #dlg.lineEdit.setText(waluty[dlg.comboBox.currentText()])
-    dlg.lineEdit.setText(get_actual_value(dlg.comboBox.currentText()))
-    dlg.lineEdit_3.setText(get_actual_date(dlg.comboBox.currentText()))
-
+    dlg.lineEdit.setText(str(get_actual_value(dlg.comboBox.currentText(), read_act_file(dlg.comboBox.currentText()))))
+    dlg.lineEdit_3.setText(str(get_actual_date(dlg.comboBox.currentText(), read_act_file(dlg.comboBox.currentText()))))
 
 waluty = {'złoto': 'gold', 'euro': 'EUR', 'funt szterling': 'GBP', 'dolar amerykański': 'USD', 'korona czeska': 'CZK', 'peso meksykańskie': 'MXN', 'rubel rosyjski': 'RUB'}
 
@@ -33,7 +33,8 @@ dlg.comboBox.currentIndexChanged.connect(aktualny)
 dlg.pushButton.clicked.connect(display_forecast)
 dlg.pushButton_2.clicked.connect(pobierz_dane)
 
-print(get_actual_value('gold'))
+
+#print(get_actual_value('gold', read_act_file('gold')))
 
 dlg.show()
 app.exec()
